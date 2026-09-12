@@ -80,7 +80,7 @@ function App() {
     // /demo and /anon are deep links that bypass the login screen entirely, so skip the real session check
     if (location.pathname === "/demo" || location.pathname === "/anon") return;
 
-    fetch("/api/auth/session")
+    fetch("/leasingapi/auth/session")
       .then((res) => res.json())
       .then((data) => setAuthenticated(data.authenticated === true))
       .catch(() => setAuthenticated(false));
@@ -90,7 +90,7 @@ function App() {
   useEffect(() => {
     if (!authenticated || demoMode || anonMode) return;
 
-    fetch("/api/car/status")
+    fetch("/leasingapi/car/status")
       .then(async (res) => {
         if (res.status === 401) {
           setAuthenticated(false);
@@ -112,7 +112,7 @@ function App() {
       })
       .catch((err) => console.error("Car status error:", err));
 
-    fetch("/api/car/picture")
+    fetch("/leasingapi/car/picture")
       .then(async (res) => {
         if (res.status === 401) {
           setAuthenticated(false);
@@ -127,7 +127,7 @@ function App() {
       })
       .catch((err) => console.error("Car picture error:", err));
 
-    fetch("/api/car/charges?days=90")
+    fetch("/leasingapi/car/charges?days=90")
       .then(async (res) => {
         if (res.status === 401) {
           setAuthenticated(false);
@@ -144,7 +144,7 @@ function App() {
   }, [authenticated, demoMode, anonMode]);
 
   const handleLoginRequest = async (email: string, password: string) => {
-    const response = await fetch("/api/auth/login", {
+    const response = await fetch("/leasingapi/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -289,7 +289,7 @@ function App() {
   };
 
   const handleLogout = async () => {
-    await fetch("/api/auth/logout", { method: "POST" });
+    await fetch("/leasingapi/auth/logout", { method: "POST" });
     setDemoMode(false);
     setAnonMode(false);
     setTutorialActive(false);

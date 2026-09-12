@@ -54,7 +54,7 @@ cd client
 npm run dev
 ```
 
-The Vite dev server runs on `http://localhost:5173` and proxies `/api` requests to the backend at `http://localhost:8001`.
+The Vite dev server runs on `http://localhost:5173` and proxies `/leasingapi` requests to the backend at `http://localhost:8001`.
 
 Open the frontend and sign in with your My Renault email and password. The password is used only for the Renault login request and is not stored. The backend retains Renault's login token in memory and identifies the browser with an HTTP-only cookie. The account and vehicle (VIN) are discovered automatically from the logged-in user's Renault profile — any My Renault account works, nothing needs to be preconfigured.
 

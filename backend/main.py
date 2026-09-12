@@ -19,7 +19,7 @@ app.add_middleware(
 )
 
 # Mount API routes
-app.include_router(api_router, prefix="/api")
+app.include_router(api_router, prefix="/leasingapi")
 
 # ---------- Serve the built React client ----------
 CLIENT_BUILD_DIR = Path(__file__).resolve().parent.parent / "client" / "dist"
